@@ -4,11 +4,12 @@ import { ImageGallery } from "./ImageGallery/ImageGallery";
 
 class App extends React.Component {
   state = {
-    input: ''
+    input: '',
+    page: 1,
   }
 
-  handleFormSubmit = input => {
-    this.setState({input})
+  handleFormSubmit = (input, page) => {
+    this.setState({input, page})
   }
 
   render() {
@@ -16,7 +17,7 @@ class App extends React.Component {
     return(
       <>
       <Searchbar onSubmit={this.handleFormSubmit}/>
-      <ImageGallery input={this.state.input}/>
+      <ImageGallery input={this.state.input} page={this.state.page}/>
       </>
     )
   }

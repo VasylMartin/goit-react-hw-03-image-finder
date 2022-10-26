@@ -9,7 +9,7 @@ class ImageGallery extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.input !== this.props.input) {
-            fetch(`https://pixabay.com/api/?q=${this.props.input}&page=1&key=29632801-66d18c979cc1b04cff9f90142&image_type=photo&orientation=horizontal&per_page=12`)
+            fetch(`https://pixabay.com/api/?q=${this.props.input}&page=&{this.state.page}&key=29632801-66d18c979cc1b04cff9f90142&image_type=photo&orientation=horizontal&per_page=12`)
             .then(response => response.json())
             .then(query => this.setState({query: query.hits}))
         }

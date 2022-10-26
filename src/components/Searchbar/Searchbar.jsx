@@ -2,7 +2,8 @@ import React from "react";
 
 class  Searchbar extends React.Component {
     state = {
-        input: ''
+        input: '',
+        page: 1,
     }
 
     handleInputChange = event => {
@@ -15,9 +16,10 @@ class  Searchbar extends React.Component {
         if(this.state.input.trim() === '') {
             return
         }
-        this.props.onSubmit(this.state.input)
+        this.props.onSubmit(this.state.input, this.state.page)
 
         this.setState({input: ''})
+        this.setState({page: 1})
     }
     
     render() {
