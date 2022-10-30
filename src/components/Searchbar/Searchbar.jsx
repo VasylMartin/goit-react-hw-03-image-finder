@@ -18,8 +18,7 @@ class  Searchbar extends React.Component {
         }
         this.props.onSubmit(this.state.input, this.state.page)
 
-        this.setState({input: ''})
-        this.setState({page: 1})
+        this.setState({input: '', page: 1})
     }
     
     render() {
