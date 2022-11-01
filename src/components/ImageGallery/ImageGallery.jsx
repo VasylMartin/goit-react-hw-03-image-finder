@@ -13,7 +13,9 @@ class ImageGallery extends React.Component {
             .then(response => response.json())
             .then(query => {
                 if(prevProps.input !== this.props.input) {
-                    this.setState({query: query.hits})
+                    this.setState({
+                        query: query.hits
+                    })
                 }
                 
                 if(prevProps.input === this.props.input) {
