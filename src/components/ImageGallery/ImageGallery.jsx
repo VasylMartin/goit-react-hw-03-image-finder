@@ -7,6 +7,7 @@ class ImageGallery extends React.Component {
     state = {
         query: [],
         loading: false,
+        showModal: false,
     }
 
     componentDidUpdate(prevProps, prevState) {
