@@ -3,10 +3,11 @@ import { Searchbar } from "./Searchbar/Searchbar";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Button } from "./Button/Button";
 
+
 class App extends React.Component {
   state = {
     input: '',
-    page: 1,
+    page: 0,
   }
 
   handleFormSubmit = (input, page) => {
@@ -31,7 +32,9 @@ class App extends React.Component {
       <>
       <Searchbar onSubmit={this.handleFormSubmit}/>
       <ImageGallery input={this.state.input} page={this.state.page}/>
-      <Button onClick={this.loadMore}/>
+      {this.state.page >= 1 && (
+        <Button onClick={this.loadMore}/>
+      )}
       </>
     )
   }
