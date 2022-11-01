@@ -11,8 +11,18 @@ class ImageGallery extends React.Component {
         if(prevProps.input !== this.props.input || prevProps.page !== this.state.page) {
             fetch(`https://pixabay.com/api/?q=${this.props.input}&page=${this.props.page}&key=29632801-66d18c979cc1b04cff9f90142&image_type=photo&orientation=horizontal&per_page=12`)
             .then(response => response.json())
-            .then(query => {this.setState({query: query.hits})})
-        }
+            .then(query => {
+                if(prevProps.input !== this.props.input) {
+                    this.setState({query: query.hits})
+                }
+                
+                if(prevProps.input === this.props.input) {
+                    this.setState(prevState => ({
+                        query: [...prevState.query, ...query.hits]
+                    }))
+                }
+            })
+            }
     }
 
     // if(prevProps.query === this.props.query) {
