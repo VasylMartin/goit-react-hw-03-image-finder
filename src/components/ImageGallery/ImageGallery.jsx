@@ -1,6 +1,7 @@
 import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 import { Loader } from "components/Loader/Loader";
 import React from "react";
+import { Modal } from "components/Modal/Modal";
 
 class ImageGallery extends React.Component {
 
@@ -8,7 +9,20 @@ class ImageGallery extends React.Component {
         query: [],
         loading: false,
         showModal: false,
+        modalImg: null,
     }
+
+    toggleModal = () => {
+        this.setState(({ showModal }) => ({
+            showModal: !showModal,
+        }))
+    }
+
+    onImgClick = id => {
+        const clickedImg = this.state.query.find(object => object.id === id);
+        this.setState({ modalImg: clickedImg });
+        this.toggleModal();
+    };
 
     componentDidUpdate(prevProps, prevState) {
 
@@ -37,6 +51,7 @@ class ImageGallery extends React.Component {
 
     render() {
         return(
+            <>
             <ul>
                 {this.state.query.map(({id, webformatURL, tags}) => (
                     <ImageGalleryItem
@@ -44,10 +59,17 @@ class ImageGallery extends React.Component {
                     id={id}
                     url={webformatURL}
                     title={tags}
+                    onImgClick={this.onImgClick}
                     />
                 ))}
                 {this.state.loading && <Loader />}
             </ul>
+            {this.state.showModal && (
+                <Modal onClose={this.toggleModal}>
+                    <img src={this.state.modalImg.largeImageURL} alt={this.state.modalImg.tags} />
+                </Modal>
+            )}
+            </>
         )
     }
 

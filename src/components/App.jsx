@@ -20,22 +20,16 @@ class App extends React.Component {
     }))
   }
 
-//   componentDidUpdate(prevProps, prevState) {
-//     if(prevState.page !== this.state.page || prevState.input !== this.state.input) {
-//       console.log("Fetch")
-//     }
-// }
-
   render() {
 
     return(
-      <>
+      <div>
       <Searchbar onSubmit={this.handleFormSubmit}/>
       <ImageGallery input={this.state.input} page={this.state.page}/>
       {this.state.page >= 1 && (
         <Button onClick={this.loadMore}/>
       )}
-      </>
+      </div>
     )
   }
 }
