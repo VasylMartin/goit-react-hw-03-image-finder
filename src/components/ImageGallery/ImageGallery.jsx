@@ -2,6 +2,8 @@ import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 import { Loader } from "components/Loader/Loader";
 import React from "react";
 import { Modal } from "components/Modal/Modal";
+import { GalleryContainer } from "./ImageGallery.styled";
+import PropTypes from 'prop-types';
 
 class ImageGallery extends React.Component {
 
@@ -52,7 +54,7 @@ class ImageGallery extends React.Component {
     render() {
         return(
             <>
-            <ul>
+            <GalleryContainer>
                 {this.state.query.map(({id, webformatURL, tags}) => (
                     <ImageGalleryItem
                     key={id}
@@ -63,7 +65,7 @@ class ImageGallery extends React.Component {
                     />
                 ))}
                 {this.state.loading && <Loader />}
-            </ul>
+            </GalleryContainer>
             {this.state.showModal && (
                 <Modal onClose={this.toggleModal}>
                     <img src={this.state.modalImg.largeImageURL} alt={this.state.modalImg.tags} />
@@ -76,3 +78,8 @@ class ImageGallery extends React.Component {
 }
 
 export {ImageGallery}
+
+ImageGallery.propTypes = {
+    page: PropTypes.number.isRequired,
+    input: PropTypes.string.isRequired,
+};

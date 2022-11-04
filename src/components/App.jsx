@@ -2,6 +2,7 @@ import React from "react";
 import { Searchbar } from "./Searchbar/Searchbar";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Button } from "./Button/Button";
+import { Container } from "./App.styled";
 
 
 class App extends React.Component {
@@ -23,13 +24,13 @@ class App extends React.Component {
   render() {
 
     return(
-      <div>
+      <Container>
       <Searchbar onSubmit={this.handleFormSubmit}/>
       <ImageGallery input={this.state.input} page={this.state.page}/>
       {this.state.page >= 1 && (
         <Button onClick={this.loadMore}/>
       )}
-      </div>
+      </Container>
     )
   }
 }

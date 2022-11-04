@@ -1,5 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
+import { Overlay, Content } from './Modal.styled';
+import PropTypes from 'prop-types';
 
 const modalRoot = document.getElementById('modal-root');
 class Modal extends React.Component {
@@ -25,12 +27,17 @@ class Modal extends React.Component {
 
     render() {
         return createPortal(
-            <div onClick={this.closeByClick}>
-                <div>{this.props.children}</div>
-            </div>,
+            <Overlay onClick={this.closeByClick}>
+                <Content>{this.props.children}</Content>
+            </Overlay>,
             modalRoot
         )
     }
 }
 
 export {Modal}
+
+Modal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
+};
